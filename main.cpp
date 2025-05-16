@@ -439,7 +439,7 @@ public:
         investments.push_back(i);
     }
     
-    // Search transactions by description (linear search)
+    // search transactions by description (this is just linear search)
     vector<Transaction*> searchTransactionsByDescription(const string& description) {
         vector<Transaction*> results;
         for (auto t : transactions) {
@@ -450,7 +450,7 @@ public:
         return results;
     }
     
-    // Search transactions by date
+    // search transactions(by date)
     vector<Transaction*> searchTransactionsByDate(const Date& date) {
         vector<Transaction*> results;
         for (auto t : transactions) {
@@ -462,7 +462,7 @@ public:
         return results;
     }
     
-    // Search transactions by category
+    // search transactions(by category)
     vector<Transaction*> searchTransactionsByCategory(Category category) {
         vector<Transaction*> results;
         for (auto t : transactions) {
@@ -473,7 +473,7 @@ public:
         return results;
     }
     
-    // Search investments by amount range
+    // search investments(by amount range)
     vector<Investment*> searchInvestmentsByAmountRange(double minAmount, double maxAmount) {
         vector<Investment*> results;
         for (auto i : investments) {
@@ -485,7 +485,7 @@ public:
         return results;
     }
     
-    // Search investments by type
+    // search investments- type
     vector<Investment*> searchInvestmentsByType(const string& type) {
         vector<Investment*> results;
         for (auto i : investments) {
@@ -496,7 +496,6 @@ public:
         return results;
     }
     
-    // Display search results for transactions
     void displayTransactionSearchResults(const vector<Transaction*>& results) {
         if (results.empty()) {
             cout << "No matching transactions found." << endl;
@@ -513,7 +512,6 @@ public:
         }
     }
     
-    // Display search results for investments
     void displayInvestmentSearchResults(const vector<Investment*>& results) {
         if (results.empty()) {
             cout << "No matching investments found." << endl;
@@ -530,7 +528,6 @@ public:
         }
     }
     
-    // Delete transaction by index
     bool deleteTransaction(int index) {
         if (index < 0 || index >= transactions.size()) {
             return false;
@@ -541,7 +538,6 @@ public:
         return true;
     }
     
-    // Delete investment by index
     bool deleteInvestment(int index) {
         if (index < 0 || index >= investments.size()) {
             return false;
@@ -552,7 +548,6 @@ public:
         return true;
     }
     
-    // Update transaction (replace with a new one)
     bool updateTransaction(int index, Transaction* newTransaction) {
         if (index < 0 || index >= transactions.size()) {
             return false;
@@ -563,7 +558,6 @@ public:
         return true;
     }
     
-    // Update investment (replace with a new one)
     bool updateInvestment(int index, Investment* newInvestment) {
         if (index < 0 || index >= investments.size()) {
             return false;
@@ -574,7 +568,6 @@ public:
         return true;
     }
     
-    // Sort transactions by amount
     void sortTransactionsByAmount(bool ascending = true) {
         if (ascending) {
             sort(transactions.begin(), transactions.end(), 
@@ -585,7 +578,6 @@ public:
         }
     }
     
-    // Sort transactions by date
     void sortTransactionsByDate(bool ascending = true) {
         if (ascending) {
             sort(transactions.begin(), transactions.end(), 
@@ -608,7 +600,6 @@ public:
         }
     }
     
-    // Sort transactions by category
     void sortTransactionsByCategory() {
         sort(transactions.begin(), transactions.end(), 
              [](Transaction* a, Transaction* b) {
@@ -616,7 +607,6 @@ public:
              });
     }
     
-    // Sort investments by amount
     void sortInvestmentsByAmount(bool ascending = true) {
         if (ascending) {
             sort(investments.begin(), investments.end(), 
@@ -627,7 +617,6 @@ public:
         }
     }
     
-    // Sort investments by duration
     void sortInvestmentsByDuration(bool ascending = true) {
         if (ascending) {
             sort(investments.begin(), investments.end(), 
@@ -1054,7 +1043,6 @@ public:
                 string oldType = oldTransaction->getType();
                 double oldAmount = oldTransaction->getAmount();
                 
-                // Update the transaction
                 int typeOption;
                 cout<<"\nSelect new transaction type:"<<endl;
                 cout<<"1. Income"<<endl;
@@ -1117,7 +1105,6 @@ public:
                     newTransaction = new Expenditure(amount, description, date, category);
                 }
                 
-                // Adjust balance based on transaction changes
                 if (oldType == "Income") {
                     balance -= oldAmount;
                 } else {
@@ -1165,7 +1152,6 @@ public:
                 Investment* oldInvestment = manager.investments[index];
                 double oldAmount = oldInvestment->getAmount();
                 
-                // Update the investment
                 int typeOption;
                 cout<<"\nSelect new investment type:"<<endl;
                 cout<<"1. Fixed Deposit (FD)"<<endl;
@@ -1196,7 +1182,6 @@ public:
                     newInvestment = new SIP(amount, duration, monthly, startDate);
                 }
                 
-                // Adjust balance based on investment changes
                 balance += oldAmount;
                 balance -= amount;
                 
